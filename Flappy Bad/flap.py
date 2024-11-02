@@ -2,12 +2,10 @@ import pygame
 import random
 import os
 
-# Initialize Pygame
 pygame.init()
 
-# Constants
 WIDTH, HEIGHT = 400, 600
-BIRD_WIDTH, BIRD_HEIGHT = 70, 50  # Adjust bird size (aspect ratio preserved)
+BIRD_WIDTH, BIRD_HEIGHT = 70, 50
 BIRD_X = 100
 GRAVITY = 0.4
 JUMP = -8.5
@@ -89,13 +87,13 @@ class Pipe:
 
         return bird_rect.colliderect(top_pipe_rect) or bird_rect.colliderect(bottom_pipe_rect)
 
-# Check if a point (x, y) is inside a rectangle
+# Check if the point (x, y) is inside a rectangle
 def is_inside_rect(x, y, rect):
     return rect[0] < x < rect[0] + rect[2] and rect[1] < y < rect[1] + rect[3]
 
 # Main function
 def main():
-    global window, WIDTH, HEIGHT  # Declare window, WIDTH, and HEIGHT as global variables
+    global window, WIDTH, HEIGHT
     bird = Bird()
     pipes = []
     is_start_screen = True
@@ -161,11 +159,11 @@ def main():
 
         if not is_start_screen and bird.is_alive:
             bird.draw()
-            draw_map()  # Show the map during gameplay
-            display_score()  # Display score at the top of the screen
+            draw_map()
+            display_score()
         else:
             if not bird.is_alive:
-                # Display "Game Over" text and Retry button
+                # Display "Game Over" Screen
                 font = pygame.font.SysFont(None, 48)
                 game_over_text = font.render("Game Over", True, WHITE)
                 game_over_rect = game_over_text.get_rect(center=(WIDTH // 2, HEIGHT // 3))
@@ -197,7 +195,7 @@ def main():
                 window.blit(title_text, title_rect)
                 window.blit(instruction_text, instruction_rect)
                 window.blit(start_text, start_rect)
-                draw_map()  # Show the map on the start screen
+                draw_map()
 
         pygame.display.update()
         clock.tick(60)
